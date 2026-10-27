@@ -1,11 +1,10 @@
 # Template Blog (Astro + Pages CMS + Cloudflare)
 
-Blog laju, percuma dihos, dengan **6 reka bentuk** yang boleh ditukar melalui satu pilihan dalam Pages CMS.
-Tulis artikel seperti menulis dalam WordPress: tiada kod diperlukan.
+No coding experience.
 
-| Tema | Rasa |
+| Tema | Desc |
 |---|---|
-| `koran` | Surat khabar: serif tebal, lajur, artikel utama besar |
+| `akhbar` | Surat khabar: serif tebal, lajur, artikel utama besar |
 | `majalah` | Grid visual, gambar besar dengan teks atas gambar |
 | `minimal` | Teks sahaja, fon mono, paling laju |
 | `jurnal` | Buku nota: kertas bergaris, tulisan tangan, garis masa |
@@ -14,25 +13,25 @@ Tulis artikel seperti menulis dalam WordPress: tiada kod diperlukan.
 
 ---
 
-## Untuk penulis (bukan teknikal): 5 langkah
+
 
 ### 1. Daftar GitHub dan salin template
 1. Daftar akaun percuma di <https://github.com>.
 2. Buka repo template ini, tekan **Use this template → Create a new repository**.
-3. Beri nama (cth. `blog-saya`), pilih **Private** atau **Public**, tekan **Create repository**.
+3. Beri nama (cth. `anonblog`), pilih **Private** (better private ooo) atau **Public**, tekan **Create repository**.
 
-### 2. Hidupkan blog di Cloudflare Pages (percuma)
+### 2. Hidupkan blog di Cloudflare Pages
 1. Daftar di <https://dash.cloudflare.com>. Pergi ke **Workers & Pages → Create → Pages → Connect to Git**.
-2. Pilih repo `blog-saya`.
+2. Pilih repo `anonblog`.
 3. Isi tetapan binaan:
    - **Build command:** `npm run build`
    - **Build output directory:** `dist`
    - **Environment variable:** `NODE_VERSION` = `20`
-4. Tekan **Save and Deploy**. Tunggu 2 hingga 3 minit. Cloudflare beri alamat seperti `blog-saya.pages.dev`.
+4. Tekan **Save and Deploy**. Tunggu 2 hingga 3 minit. Cloudflare beri alamat seperti `anonblog.pages.dev`.
 
-### 3. Sambung Pages CMS (tempat anda menulis)
+### 3. Sambung Pages CMS (tempat menulis)
 1. Buka <https://app.pagescms.org> dan log masuk dengan GitHub.
-2. Pilih repo `blog-saya`. Anda akan nampak menu: **Tetapan Blog**, **Halaman Tentang**, **Artikel Blog**.
+2. Pilih repo `anonblog`. Anda akan nampak menu: **Tetapan Blog**, **Halaman Tentang**, **Artikel Blog**.
 
 ### 4. Tetapkan blog anda
 Dalam **Tetapan Blog**: isi nama blog, tagline, nama penulis, dan **Alamat Blog** (alamat `.pages.dev` tadi, tanpa `/` di hujung).
