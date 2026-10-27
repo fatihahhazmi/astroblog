@@ -1,0 +1,147 @@
+media:
+  - name: images
+    label: Gambar
+    input: public/images/uploads
+    output: /images/uploads
+
+content:
+  # ==================== TETAPAN BLOG ====================
+  - name: settings
+    label: Tetapan Blog
+    type: file
+    path: src/content/settings/site.json
+    format: json
+    fields:
+      - name: title
+        label: Nama Blog
+        type: string
+        required: true
+      - name: tagline
+        label: Tagline (ayat pendek di bawah nama blog)
+        type: string
+      - name: description
+        label: Penerangan Blog (untuk Google)
+        type: text
+        required: true
+      - name: author
+        label: Nama Penulis
+        type: string
+        required: true
+      - name: siteUrl
+        label: Alamat Blog (cth. https://blogsaya.com, tanpa / di hujung)
+        type: string
+        required: true
+      - name: theme
+        label: Reka Bentuk (Tema)
+        type: select
+        required: true
+        default: koran
+        options:
+          values:
+            - { value: koran, label: "Koran (Editorial, serif, lajur)" }
+            - { value: majalah, label: "Majalah (grid visual, gambar besar)" }
+            - { value: minimal, label: "Minimal (teks sahaja, laju)" }
+            - { value: jurnal, label: "Jurnal Peribadi (kertas, tulisan tangan)" }
+            - { value: neon, label: "Gelap Neon (mod gelap, teknologi)" }
+            - { value: rencana, label: "Rencana Panjang (satu lajur, bacaan lama)" }
+      - name: postsPerPage
+        label: Bilangan artikel setiap halaman
+        type: number
+        default: 6
+      - name: language
+        label: Kod bahasa (ms-MY untuk Melayu, en-US untuk Inggeris)
+        type: string
+        default: ms-MY
+      - name: social
+        label: Pautan Media Sosial (kosongkan jika tiada)
+        type: object
+        fields:
+          - { name: instagram, label: Instagram, type: string }
+          - { name: twitter, label: "X / Twitter", type: string }
+          - { name: youtube, label: YouTube, type: string }
+          - { name: facebook, label: Facebook, type: string }
+
+  # ==================== HALAMAN TENTANG ====================
+  - name: about
+    label: Halaman Tentang
+    type: file
+    path: src/content/pages/tentang.md
+    format: yaml-frontmatter
+    fields:
+      - { name: title, label: Tajuk, type: string, required: true }
+      - { name: description, label: Penerangan ringkas, type: string }
+      - name: body
+        label: Isi
+        type: rich-text
+        options:
+          media: images
+          path: public/images/uploads/pages
+          rename: true
+
+  # ==================== ARTIKEL ====================
+  - name: blog
+    label: Artikel Blog
+    type: collection
+    path: src/content/blog
+    format: yaml-frontmatter
+    filename: "{slug}.md"
+    view:
+      fields: [title, category, pubDate, draft]
+      primary: title
+      sort: [pubDate, title]
+      default:
+        sort: pubDate
+        order: desc
+    fields:
+      - name: title
+        label: Tajuk Artikel
+        type: string
+        required: true
+      - name: description
+        label: Penerangan untuk Google (maksimum 160 aksara)
+        type: string
+        required: true
+      - name: excerpt
+        label: Sedutan pada senarai artikel (pilihan)
+        type: text
+      - name: pubDate
+        label: Tarikh Terbit
+        type: date
+        required: true
+      - name: updatedDate
+        label: Tarikh Kemas Kini (pilihan)
+        type: date
+      - name: coverImage
+        label: Gambar Utama
+        type: image
+        options:
+          media: images
+      - name: coverAlt
+        label: Penerangan gambar (untuk SEO dan akses; kosong = guna tajuk)
+        type: string
+      - name: category
+        label: Kategori
+        type: string
+        default: Umum
+      - name: tags
+        label: Tag
+        type: string
+        list: true
+      - name: author
+        label: Penulis (kosong = nama dalam Tetapan Blog)
+        type: string
+      - name: draft
+        label: Draf (tick = belum diterbitkan)
+        type: boolean
+        default: false
+      - name: body
+        label: Isi Artikel
+        type: rich-text
+        options:
+          format: markdown
+          media: images
+          path: public/images/uploads/blog
+          categories: ["image"]
+          extensions: ["jpg", "jpeg", "png", "webp", "gif", "svg"]
+          rename: true
+          switcher: true
