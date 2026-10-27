@@ -1,0 +1,16 @@
+{
+  "title": "Nama Blog Saya",
+  "tagline": "Satu ayat yang menggambarkan blog ini",
+  "description": "Blog peribadi tentang apa sahaja yang menarik minat saya.",
+  "author": "Nama Penulis",
+  "siteUrl": "https://contoh.pages.dev",
+  "language": "ms-MY",
+  "theme": "koran",
+  "postsPerPage": 6,
+  "social": {
+    "instagram": "",
+    "twitter": "",
+    "youtube": "",
+    "facebook": ""
+  }
+}
