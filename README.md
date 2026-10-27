@@ -1,6 +1,6 @@
 # Template Blog (Astro + Pages CMS + Cloudflare)
 
-No coding experience.
+
 
 | Tema | Desc |
 |---|---|
