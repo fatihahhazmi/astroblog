@@ -49,7 +49,7 @@ Pilih **Reka Bentuk (Tema)**, simpan, dan tunggu 2 minit. Muat semula blog untuk
 Dalam mod **Source** di editor, tulis `\\( x^2 \\)` untuk formula dalam baris dan `\\[ x^2 \\]` untuk formula berasingan (dua garis condong). Lihat artikel contoh.
 
 ## Domain sendiri
-Cloudflare Pages → projek → **Custom domains → Set up a domain**. Lepas itu tukar **Alamat Blog** dalam Tetapan Blog dan alamat `Sitemap:` dalam `public/robots.txt`.
+Cloudflare Pages → projek → **Custom domains → Set up a domain**. Lepas tu tukar **Alamat Blog** dalam Tetapan Blog dan alamat `Sitemap:` dalam `public/robots.txt`.
 
 ## Google Search Console
 Daftar di <https://search.google.com/search-console>, tambah domain, dan hantar `sitemap-index.xml`.
