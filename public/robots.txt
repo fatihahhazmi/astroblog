@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /pagefind/
+
+# Tukar alamat ini kepada alamat blog anda yang sebenar
+Sitemap: https://contoh.pages.dev/sitemap-index.xml
