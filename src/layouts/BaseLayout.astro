@@ -1,0 +1,56 @@
+---
+import BaseHead from '@components/BaseHead.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import MathJax from '@components/MathJax.astro';
+import SchemaWebsite from '@components/SchemaWebsite.astro';
+import { SITE } from '@config/site.config';
+
+import '../styles/base.css';
+import '../styles/themes/koran.css';
+import '../styles/themes/majalah.css';
+import '../styles/themes/minimal.css';
+import '../styles/themes/jurnal.css';
+import '../styles/themes/neon.css';
+import '../styles/themes/rencana.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string | undefined;
+  imageAlt?: string | undefined;
+  type?: 'website' | 'article';
+  canonical?: string | undefined;
+  noIndex?: boolean;
+  publishedTime?: Date | undefined;
+  modifiedTime?: Date | undefined;
+  section?: string | undefined;
+  tags?: string[];
+  math?: boolean;
+}
+
+const { math = false, ...head } = Astro.props;
+const fonts = SITE.themeInfo.fonts;
+const isHome = Astro.url.pathname === '/';
+---
+
+<!doctype html>
+<html lang={SITE.language.split('-')[0]} data-theme={SITE.theme}>
+  <head>
+    <BaseHead {...head} />
+    {fonts && <link rel="preconnect" href="https://fonts.googleapis.com" />}
+    {fonts && <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />}
+    {fonts && <link rel="stylesheet" href={fonts} />}
+    {isHome && <SchemaWebsite />}
+    <slot name="head" />
+    {math && <MathJax />}
+  </head>
+  <body>
+    <a class="skip-link" href="#kandungan">Terus ke kandungan</a>
+    <Header />
+    <main id="kandungan" class="wrap main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
