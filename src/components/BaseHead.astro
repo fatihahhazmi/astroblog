@@ -1,0 +1,73 @@
+---
+import { SITE } from '@config/site.config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string | undefined;
+  imageAlt?: string | undefined;
+  type?: 'website' | 'article';
+  canonical?: string | undefined;
+  noIndex?: boolean;
+  publishedTime?: Date | undefined;
+  modifiedTime?: Date | undefined;
+  section?: string | undefined;
+  tags?: string[];
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  image,
+  imageAlt,
+  type = 'website',
+  canonical,
+  noIndex = false,
+  publishedTime,
+  modifiedTime,
+  section,
+  tags = [],
+} = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.toString() : SITE.siteUrl;
+const toAbsolute = (path: string): string => (path.startsWith('http') ? path : new URL(path, siteUrl).toString());
+
+const fullTitle = title === SITE.title ? title : `${title} | ${SITE.title}`;
+const url = toAbsolute(canonical ?? Astro.url.pathname);
+const imageUrl = toAbsolute(image ?? SITE.defaultOgImage);
+const robots = noIndex ? 'noindex,follow' : 'index,follow,max-image-preview:large';
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content={SITE.themeInfo.themeColor} />
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<meta name="author" content={SITE.author} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={url} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
+
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={imageUrl} />
+{imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+<meta property="og:site_name" content={SITE.title} />
+<meta property="og:locale" content={SITE.locale} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+{type === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+{type === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime.toISOString()} />}
+{type === 'article' && section && <meta property="article:section" content={section} />}
+{type === 'article' && tags.map((tag) => <meta property="article:tag" content={tag} />)}
