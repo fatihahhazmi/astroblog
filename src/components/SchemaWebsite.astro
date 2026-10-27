@@ -1,0 +1,21 @@
+---
+import { SITE } from '@config/site.config';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.title,
+  url: SITE.siteUrl,
+  description: SITE.description,
+  inLanguage: SITE.language,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${SITE.siteUrl}/search/?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
+// "<" di-escape supaya teks dalam JSON tak boleh menutup tag <script>
+const json = JSON.stringify(schema).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" set:html={json}></script>

@@ -1,0 +1,16 @@
+---
+import { SITE } from '@config/site.config';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>&copy; {year} {SITE.author}. Semua hak terpelihara.</p>
+    <p class="footer-links">
+      {SITE.social.map((item) => (
+        <a href={item.url} rel="me noopener" target="_blank">{item.name}</a>
+      ))}
+      <a href="/rss.xml">RSS</a>
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,34 @@
+---
+import { SITE } from '@config/site.config';
+import { getPostImage, type BlogPost } from '@utils/posts';
+
+interface Props {
+  post: BlogPost;
+  url: string;
+}
+
+const { post, url } = Astro.props;
+const { title, description, pubDate, updatedDate, author, category, tags } = post.data;
+const cover = getPostImage(post) ?? SITE.defaultOgImage;
+const imageUrl = cover.startsWith('http') ? cover : new URL(cover, SITE.siteUrl).toString();
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  image: [imageUrl],
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: { '@type': 'Person', name: author || SITE.author },
+  publisher: { '@type': 'Organization', name: SITE.title, url: SITE.siteUrl },
+  articleSection: category,
+  keywords: tags.join(', '),
+  inLanguage: SITE.language,
+  url,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+};
+const json = JSON.stringify(schema).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" set:html={json}></script>

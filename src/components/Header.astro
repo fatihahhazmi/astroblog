@@ -1,0 +1,25 @@
+---
+import { SITE } from '@config/site.config';
+
+const path = Astro.url.pathname;
+const links = [
+  { href: '/', label: 'Utama', active: path === '/' },
+  { href: '/blog/', label: 'Artikel', active: path.startsWith('/blog') },
+  { href: '/tentang/', label: 'Tentang', active: path.startsWith('/tentang') },
+  { href: '/search/', label: 'Cari', active: path.startsWith('/search') },
+];
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">
+      <span class="brand-name">{SITE.title}</span>
+      {SITE.tagline && <span class="brand-tag">{SITE.tagline}</span>}
+    </a>
+    <nav class="nav" aria-label="Menu utama">
+      {links.map((link) => (
+        <a href={link.href} aria-current={link.active ? 'page' : undefined}>{link.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>

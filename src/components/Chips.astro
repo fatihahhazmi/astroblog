@@ -1,0 +1,17 @@
+---
+interface Props {
+  items: { name: string; href: string; count?: number }[];
+  prefix?: string;
+}
+const { items, prefix = '' } = Astro.props;
+---
+
+{items.length > 0 && (
+  <ul class="chips">
+    {items.map((item) => (
+      <li>
+        <a href={item.href}>{prefix}{item.name}{item.count !== undefined && <span class="chips__count">{item.count}</span>}</a>
+      </li>
+    ))}
+  </ul>
+)}
