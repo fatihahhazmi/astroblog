@@ -1,0 +1,44 @@
+/* MINIMAL: teks sahaja, fon mono, senarai "tarikh  tajuk". Tiada gambar dalam senarai, paling laju. */
+[data-theme='minimal'] {
+  --bg: #ffffff;
+  --fg: #222222;
+  --muted: #767676;
+  --accent: #1a56db;
+  --accent-fg: #fff;
+  --card: #ffffff;
+  --border: #e6e6e6;
+  --radius: 2px;
+  --font-body: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  --font-head: var(--font-body);
+  --wrap: 44rem;
+  --measure: 44rem;
+  --body-size: 0.97rem;
+  --leading: 1.75;
+}
+[data-theme='minimal'] .site-header { border: 0; }
+[data-theme='minimal'] .header-inner { padding-block: 2rem 0.5rem; align-items: baseline; }
+[data-theme='minimal'] .brand { flex-direction: row; gap: 0.75rem; align-items: baseline; flex-wrap: wrap; }
+[data-theme='minimal'] .brand-name { font-size: 1.1rem; }
+[data-theme='minimal'] .brand-tag { font-size: 0.8rem; }
+[data-theme='minimal'] .nav { gap: 1rem; font-size: 0.9rem; }
+[data-theme='minimal'] .nav a { border: 0; text-decoration: underline; text-decoration-color: var(--border); }
+[data-theme='minimal'] .nav a[aria-current='page'] { text-decoration-color: var(--accent); }
+[data-theme='minimal'] .intro { display: none; }
+[data-theme='minimal'] .posts { gap: 0; }
+[data-theme='minimal'] .post-card { grid-template-columns: 7.5rem 1fr; gap: 1rem; padding: 0.55rem 0; align-items: baseline; }
+[data-theme='minimal'] .post-card__media, [data-theme='minimal'] .post-card__excerpt, [data-theme='minimal'] .post-card__meta .cat { display: none; }
+[data-theme='minimal'] .post-card__body { display: contents; }
+[data-theme='minimal'] .post-card__meta { grid-column: 1; grid-row: 1; margin: 0; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+[data-theme='minimal'] .post-card__title { grid-column: 2; grid-row: 1; margin: 0; font-size: 1rem; font-weight: 400; }
+[data-theme='minimal'] .post-card__title a { color: var(--accent); text-decoration: underline; text-decoration-color: transparent; }
+[data-theme='minimal'] .post-card__title a:hover { text-decoration-color: currentColor; color: var(--accent); }
+[data-theme='minimal'] .page-title { font-size: 1.1rem; margin-bottom: 1rem; }
+[data-theme='minimal'] .section__title { font-size: 0.9rem; text-transform: none; letter-spacing: 0; }
+[data-theme='minimal'] .chips a { border: 0; padding: 0; background: none; text-decoration: underline; }
+[data-theme='minimal'] .chips__count::before { content: '('; } [data-theme='minimal'] .chips__count::after { content: ')'; }
+[data-theme='minimal'] .article__title { font-size: 1.4rem; }
+[data-theme='minimal'] .article__cover img, [data-theme='minimal'] .prose img { border-radius: 0; }
+[data-theme='minimal'] .prose h2 { font-size: 1.15rem; } [data-theme='minimal'] .prose h3 { font-size: 1rem; }
+[data-theme='minimal'] .prose pre { background: #f5f5f5; color: var(--fg); border: 1px solid var(--border); }
+[data-theme='minimal'] .site-footer { border: 0; font-size: 0.8rem; }
+@media (max-width: 520px) { [data-theme='minimal'] .post-card { grid-template-columns: 1fr; gap: 0; } [data-theme='minimal'] .post-card__title { grid-column: 1; grid-row: 2; } }

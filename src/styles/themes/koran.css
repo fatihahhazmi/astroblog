@@ -1,0 +1,57 @@
+/* KORAN (Editorial): surat khabar. Serif tebal, garis berganda, lajur, tajuk utama besar. */
+[data-theme='koran'] {
+  --bg: #fbfaf7;
+  --fg: #141414;
+  --muted: #5a5a55;
+  --accent: #b3001b;
+  --accent-fg: #fff;
+  --card: #fbfaf7;
+  --border: #d8d4c8;
+  --radius: 0;
+  --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-head: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --wrap: 70rem;
+  --measure: 40rem;
+  --body-size: 1.125rem;
+}
+[data-theme='koran'] .site-header { border: 0; text-align: center; }
+[data-theme='koran'] .header-inner { flex-direction: column; padding-block: 1.75rem 0; gap: 0.9rem; }
+[data-theme='koran'] .brand { align-items: center; }
+[data-theme='koran'] .brand-name { font-size: clamp(2.2rem, 8vw, 4.2rem); font-weight: 900; letter-spacing: -0.01em; text-transform: uppercase; }
+[data-theme='koran'] .brand-tag { font-style: italic; font-size: 1rem; margin-top: 0.3rem; }
+[data-theme='koran'] .nav { width: 100%; justify-content: center; border-top: 4px double var(--fg); border-bottom: 1px solid var(--fg); padding-block: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; }
+[data-theme='koran'] .nav a { border: 0; font-weight: 600; }
+[data-theme='koran'] .nav a:hover, [data-theme='koran'] .nav a[aria-current='page'] { color: var(--accent); }
+[data-theme='koran'] .intro { display: none; }
+[data-theme='koran'] .main { padding-top: 1.5rem; }
+
+/* Senarai: artikel utama melintang, selebihnya 3 lajur dengan garis menegak */
+[data-theme='koran'] .posts--home { grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--border); }
+[data-theme='koran'] .posts--home .post-card { padding: 1.5rem 1.5rem 1.5rem 0; border-bottom: 1px solid var(--border); align-content: start; }
+[data-theme='koran'] .posts--home .post-card:not(:nth-child(3n + 1)) { padding-left: 1.5rem; border-left: 1px solid var(--border); }
+[data-theme='koran'] .posts--home .post-card:first-child { grid-column: 1 / -1; grid-template-columns: 1.4fr 1fr; gap: 2rem; padding: 1.5rem 0 2rem; align-items: center; }
+[data-theme='koran'] .posts--home .post-card:first-child .post-card__title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; line-height: 1.05; }
+[data-theme='koran'] .posts--home .post-card:first-child .post-card__excerpt { font-size: 1.15rem; color: var(--fg); }
+[data-theme='koran'] .posts--home .post-card:first-child .post-card__media { aspect-ratio: 3 / 2; }
+[data-theme='koran'] .posts--archive { gap: 0; }
+[data-theme='koran'] .posts--archive .post-card { padding: 1.5rem 0; border-bottom: 1px solid var(--border); grid-template-columns: 220px 1fr; gap: 1.5rem; }
+[data-theme='koran'] .post-card__media { filter: grayscale(0.25) contrast(1.05); }
+[data-theme='koran'] .post-card__title { font-weight: 700; }
+[data-theme='koran'] .post-card__meta { font-family: var(--font-body); font-style: italic; text-transform: none; }
+[data-theme='koran'] .post-card__meta .cat { font-style: normal; font-size: 0.72rem; }
+[data-theme='koran'] .section__title { border-bottom: 3px double var(--fg); padding-bottom: 0.3rem; color: var(--fg); font-family: var(--font-head); }
+[data-theme='koran'] .chips a { border-radius: 0; border-color: var(--fg); }
+[data-theme='koran'] .article__title { font-weight: 900; }
+[data-theme='koran'] .prose > p:first-of-type::first-letter { float: left; font-family: var(--font-head); font-weight: 900; font-size: 4.2rem; line-height: 0.85; padding: 0.35rem 0.6rem 0 0; color: var(--accent); }
+[data-theme='koran'] .prose blockquote { font-style: italic; border-left: 0; border-block: 1px solid var(--fg); padding-block: 0.75rem; color: var(--fg); }
+
+@media (max-width: 860px) {
+  [data-theme='koran'] .posts--home { grid-template-columns: 1fr 1fr; }
+  [data-theme='koran'] .posts--home .post-card:not(:nth-child(3n + 1)) { padding-left: 0; border-left: 0; }
+  [data-theme='koran'] .posts--home .post-card { padding-right: 0; }
+  [data-theme='koran'] .posts--home .post-card:first-child { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  [data-theme='koran'] .posts--home { grid-template-columns: 1fr; }
+  [data-theme='koran'] .posts--archive .post-card { grid-template-columns: 1fr; }
+}

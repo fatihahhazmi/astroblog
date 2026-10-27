@@ -1,0 +1,61 @@
+/* MAJALAH: grid visual tak seragam, gambar besar dengan teks atas gambar, lencana warna. */
+[data-theme='majalah'] {
+  --bg: #ffffff;
+  --fg: #16161a;
+  --muted: #6c6c78;
+  --accent: #ff4d2e;
+  --accent-fg: #fff;
+  --card: #f6f4f1;
+  --border: #ebe7e1;
+  --radius: 18px;
+  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-head: 'DM Serif Display', Georgia, serif;
+  --wrap: 78rem;
+  --measure: 44rem;
+}
+[data-theme='majalah'] .site-header { border: 0; position: sticky; top: 0; z-index: 20; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(8px); }
+[data-theme='majalah'] .header-inner { padding-block: 1.1rem; }
+[data-theme='majalah'] .brand-name { font-size: 2rem; letter-spacing: -0.02em; }
+[data-theme='majalah'] .brand-tag { display: none; }
+[data-theme='majalah'] .nav { gap: 0.4rem; }
+[data-theme='majalah'] .nav a { border: 0; padding: 0.45rem 1rem; border-radius: 999px; font-size: 0.92rem; }
+[data-theme='majalah'] .nav a:hover { background: var(--card); }
+[data-theme='majalah'] .nav a[aria-current='page'] { background: var(--fg); color: #fff; }
+[data-theme='majalah'] .intro { display: none; }
+
+/* Grid 12 lajur: dua kad utama bertindih teks, selebihnya kad 4 lajur */
+[data-theme='majalah'] .posts--home { grid-template-columns: repeat(12, 1fr); gap: 1.25rem; }
+[data-theme='majalah'] .posts--home .post-card { grid-column: span 4; }
+[data-theme='majalah'] .posts--home .post-card:nth-child(1) { grid-column: span 8; }
+[data-theme='majalah'] .posts--home .post-card:nth-child(2) { grid-column: span 4; }
+[data-theme='majalah'] .posts--home .post-card:nth-child(-n + 2) { position: relative; min-height: 26rem; border-radius: var(--radius); overflow: hidden; display: block; background: #222; }
+[data-theme='majalah'] .posts--home .post-card:nth-child(-n + 2) .post-card__media { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; }
+[data-theme='majalah'] .posts--home .post-card:nth-child(-n + 2) .post-card__body { position: absolute; inset: auto 0 0 0; padding: 4rem 1.5rem 1.5rem; background: linear-gradient(to top, rgba(0, 0, 0, 0.82), transparent); color: #fff; }
+[data-theme='majalah'] .posts--home .post-card:nth-child(-n + 2) .post-card__title { color: #fff; font-size: 1.7rem; }
+[data-theme='majalah'] .posts--home .post-card:nth-child(1) .post-card__title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+[data-theme='majalah'] .posts--home .post-card:nth-child(-n + 2) .post-card__excerpt, [data-theme='majalah'] .posts--home .post-card:nth-child(-n + 2) .post-card__meta { color: rgba(255, 255, 255, 0.82); }
+[data-theme='majalah'] .posts--archive { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+[data-theme='majalah'] .post-card { align-content: start; }
+[data-theme='majalah'] .post-card__media { transition: transform 0.4s ease; }
+[data-theme='majalah'] .post-card:hover .post-card__media img { transform: scale(1.04); }
+[data-theme='majalah'] .post-card__media img { transition: transform 0.4s ease; }
+[data-theme='majalah'] .post-card__meta .cat { background: var(--accent); color: #fff; padding: 0.15rem 0.65rem; border-radius: 999px; font-size: 0.68rem; }
+[data-theme='majalah'] .post-card__title { font-size: 1.35rem; font-weight: 400; }
+[data-theme='majalah'] .post-card__excerpt { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+[data-theme='majalah'] .posts--home .post-card:nth-child(-n + 2) .post-card__excerpt { -webkit-line-clamp: 2; }
+[data-theme='majalah'] .section__title { font-family: var(--font-head); font-weight: 400; font-size: 1.8rem; text-transform: none; letter-spacing: 0; color: var(--fg); }
+[data-theme='majalah'] .chips a { background: var(--card); border: 0; padding: 0.4rem 1rem; }
+[data-theme='majalah'] .chips a:hover { background: var(--accent); color: #fff; }
+[data-theme='majalah'] .article { max-width: 46rem; }
+[data-theme='majalah'] .article__title { font-weight: 400; font-size: clamp(2.2rem, 6vw, 3.6rem); }
+[data-theme='majalah'] .article__cat a { background: var(--accent); color: #fff; padding: 0.2rem 0.8rem; border-radius: 999px; }
+[data-theme='majalah'] .article__cover { margin-inline: -4vw; }
+[data-theme='majalah'] .article__cover img { border-radius: var(--radius); }
+[data-theme='majalah'] .pagination a { background: var(--fg); color: #fff; padding: 0.55rem 1.2rem; border-radius: 999px; text-decoration: none; }
+
+@media (max-width: 900px) {
+  [data-theme='majalah'] .posts--home .post-card, [data-theme='majalah'] .posts--home .post-card:nth-child(1), [data-theme='majalah'] .posts--home .post-card:nth-child(2) { grid-column: span 12; }
+  [data-theme='majalah'] .posts--home .post-card:nth-child(-n + 2) { min-height: 22rem; }
+  [data-theme='majalah'] .posts--archive { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) { [data-theme='majalah'] .posts--archive { grid-template-columns: 1fr; } }

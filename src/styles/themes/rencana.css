@@ -1,0 +1,57 @@
+/* RENCANA PANJANG: satu lajur sempit, taip besar untuk bacaan lama, tiada gangguan. */
+[data-theme='rencana'] {
+  --bg: #ffffff;
+  --fg: #232323;
+  --muted: #777777;
+  --accent: #2f6f5e;
+  --accent-fg: #fff;
+  --card: #ffffff;
+  --border: #eaeaea;
+  --radius: 3px;
+  --font-body: 'Literata', Georgia, 'Times New Roman', serif;
+  --font-head: 'Literata', Georgia, serif;
+  --wrap: 44rem;
+  --measure: 38rem;
+  --body-size: 1.2rem;
+  --leading: 1.85;
+}
+[data-theme='rencana'] .site-header { border: 0; }
+[data-theme='rencana'] .header-inner { flex-direction: column; text-align: center; padding-block: 2.5rem 0.5rem; }
+[data-theme='rencana'] .brand { align-items: center; }
+[data-theme='rencana'] .brand-name { font-size: 1rem; font-weight: 800; letter-spacing: 0.25em; text-transform: uppercase; }
+[data-theme='rencana'] .brand-tag { font-size: 0.82rem; font-style: italic; }
+[data-theme='rencana'] .nav { justify-content: center; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; gap: 1.5rem; }
+[data-theme='rencana'] .nav a { border: 0; color: var(--muted); }
+[data-theme='rencana'] .nav a:hover, [data-theme='rencana'] .nav a[aria-current='page'] { color: var(--fg); }
+[data-theme='rencana'] .main { padding-top: 3rem; }
+[data-theme='rencana'] .intro { text-align: center; margin-bottom: 4rem; }
+[data-theme='rencana'] .intro__title { display: none; }
+[data-theme='rencana'] .intro__tagline { font-size: 1.5rem; font-style: italic; line-height: 1.5; color: var(--fg); }
+[data-theme='rencana'] .posts { gap: 5rem; }
+[data-theme='rencana'] .post-card { text-align: center; gap: 1.5rem; position: relative; }
+[data-theme='rencana'] .post-card:not(:last-child)::after { content: '\2766'; display: block; color: var(--accent); font-size: 1.4rem; margin-top: 2.5rem; opacity: 0.7; }
+[data-theme='rencana'] .post-card__media { aspect-ratio: 16 / 9; border-radius: var(--radius); }
+[data-theme='rencana'] .post-card__meta { justify-content: center; font-size: 0.78rem; letter-spacing: 0.08em; }
+[data-theme='rencana'] .post-card__title { font-size: clamp(1.7rem, 5vw, 2.4rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+[data-theme='rencana'] .post-card__excerpt { font-size: 1.1rem; line-height: 1.7; max-width: 34rem; margin-inline: auto; }
+[data-theme='rencana'] .posts--archive { gap: 3rem; }
+[data-theme='rencana'] .page-title { text-align: center; font-size: 0.9rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+[data-theme='rencana'] .more { text-align: center; }
+[data-theme='rencana'] .section { text-align: center; }
+[data-theme='rencana'] .chips { justify-content: center; }
+[data-theme='rencana'] .article { max-width: 38rem; }
+[data-theme='rencana'] .article__header { text-align: center; margin-bottom: 2.5rem; }
+[data-theme='rencana'] .article__title { font-size: clamp(2.2rem, 7vw, 3.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+[data-theme='rencana'] .article__meta { justify-content: center; font-size: 0.85rem; }
+[data-theme='rencana'] .article__cover { margin-inline: -6vw; } 
+[data-theme='rencana'] .article__cover img { border-radius: var(--radius); }
+[data-theme='rencana'] .prose > p:first-of-type::first-letter { float: left; font-weight: 800; font-size: 4.6rem; line-height: 0.8; padding: 0.5rem 0.7rem 0 0; color: var(--accent); }
+[data-theme='rencana'] .prose h2 { font-size: 1.7rem; font-weight: 800; margin-top: 2.2em; }
+[data-theme='rencana'] .prose blockquote { border: 0; text-align: center; font-size: 1.5rem; font-style: italic; color: var(--accent); padding: 1rem 0; line-height: 1.5; }
+[data-theme='rencana'] .prose hr { border: 0; text-align: center; } 
+[data-theme='rencana'] .prose hr::after { content: '\2766'; color: var(--accent); font-size: 1.4rem; }
+[data-theme='rencana'] .prose a { text-decoration-thickness: 1px; }
+[data-theme='rencana'] .pagination { font-size: 0.9rem; }
+[data-theme='rencana'] .site-footer { border: 0; text-align: center; }
+[data-theme='rencana'] .footer-inner { align-items: center; }
+@media (max-width: 640px) { [data-theme='rencana'] { --body-size: 1.1rem; } [data-theme='rencana'] .article__cover { margin-inline: 0; } }

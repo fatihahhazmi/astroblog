@@ -1,0 +1,72 @@
+/* JURNAL PERIBADI: kertas buku nota, tulisan tangan, garis masa, gambar gaya polaroid. */
+[data-theme='jurnal'] {
+  --bg: #efe5cf;
+  --fg: #3a2e2a;
+  --muted: #8a7a6c;
+  --accent: #b5523b;
+  --accent-fg: #fff;
+  --card: #fbf6e9;
+  --border: #d9c9a8;
+  --radius: 4px;
+  --font-body: 'Lora', Georgia, serif;
+  --font-head: 'Caveat', 'Segoe Script', 'Bradley Hand', cursive;
+  --wrap: 52rem;
+  --measure: 38rem;
+  --body-size: 1.05rem;
+  --leading: 1.85;
+}
+[data-theme='jurnal'] body {
+  background-image: radial-gradient(rgba(120, 90, 50, 0.07) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+[data-theme='jurnal'] .site-header { border: 0; background: transparent; }
+[data-theme='jurnal'] .header-inner { flex-direction: column; align-items: center; padding-block: 2rem 0.5rem; }
+[data-theme='jurnal'] .brand { align-items: center; transform: rotate(-1.5deg); }
+[data-theme='jurnal'] .brand-name { font-size: clamp(2.6rem, 8vw, 4rem); font-weight: 700; color: var(--accent); }
+[data-theme='jurnal'] .brand-tag { font-family: var(--font-head); font-size: 1.4rem; color: var(--muted); }
+[data-theme='jurnal'] .nav { gap: 0.5rem; justify-content: center; font-family: var(--font-head); font-size: 1.4rem; }
+[data-theme='jurnal'] .nav a { border: 2px dashed transparent; padding: 0 0.8rem; border-radius: 6px; }
+[data-theme='jurnal'] .nav a:hover, [data-theme='jurnal'] .nav a[aria-current='page'] { border-color: var(--accent); }
+[data-theme='jurnal'] .intro { display: none; }
+
+/* "Halaman buku": kertas bergaris dengan margin merah */
+[data-theme='jurnal'] .main {
+  background-color: var(--card);
+  background-image:
+    linear-gradient(to right, transparent 3.4rem, rgba(200, 80, 60, 0.45) 3.4rem, rgba(200, 80, 60, 0.45) calc(3.4rem + 2px), transparent calc(3.4rem + 2px)),
+    repeating-linear-gradient(transparent 0, transparent calc(1.85rem - 1px), rgba(110, 150, 190, 0.28) calc(1.85rem - 1px), rgba(110, 150, 190, 0.28) 1.85rem);
+  box-shadow: 0 10px 30px rgba(80, 55, 20, 0.18), 0 0 0 1px var(--border);
+  border-radius: 6px;
+  margin-block: 1.5rem 3rem;
+  padding: 2.5rem 1.5rem 3rem 5rem;
+  max-width: calc(var(--wrap) - 2rem);
+}
+/* Garis masa */
+[data-theme='jurnal'] .posts { gap: 2.75rem; position: relative; }
+[data-theme='jurnal'] .posts::before { content: ''; position: absolute; left: -1.1rem; top: 0.6rem; bottom: 0.6rem; border-left: 2px dashed var(--accent); opacity: 0.5; }
+[data-theme='jurnal'] .post-card { position: relative; grid-template-columns: 1fr; }
+[data-theme='jurnal'] .post-card::before { content: ''; position: absolute; left: calc(-1.1rem - 6px); top: 0.55rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--card); }
+[data-theme='jurnal'] .post-card__media { aspect-ratio: 4 / 3; background: #fff; padding: 0.55rem 0.55rem 2rem; border-radius: 2px; box-shadow: 0 4px 14px rgba(60, 40, 10, 0.25); max-width: 21rem; transform: rotate(-1.4deg); }
+[data-theme='jurnal'] .post-card:nth-child(even) .post-card__media { transform: rotate(1.4deg); margin-left: auto; }
+[data-theme='jurnal'] .post-card__media img { border-radius: 0; }
+[data-theme='jurnal'] .post-card__meta { font-family: var(--font-head); font-size: 1.3rem; color: var(--muted); }
+[data-theme='jurnal'] .post-card__meta .cat { font-family: var(--font-head); font-size: 1.3rem; text-transform: none; letter-spacing: 0; font-weight: 700; }
+[data-theme='jurnal'] .post-card__title { font-family: var(--font-head); font-size: 2.2rem; font-weight: 700; line-height: 1.05; }
+[data-theme='jurnal'] .post-card__excerpt { font-style: italic; }
+[data-theme='jurnal'] .page-title, [data-theme='jurnal'] .article__title, [data-theme='jurnal'] .section__title { font-family: var(--font-head); font-weight: 700; text-transform: none; letter-spacing: 0; color: var(--accent); }
+[data-theme='jurnal'] .page-title { font-size: 2.8rem; } [data-theme='jurnal'] .section__title { font-size: 2rem; }
+[data-theme='jurnal'] .article__title { font-size: clamp(2.6rem, 7vw, 3.8rem); line-height: 1; }
+[data-theme='jurnal'] .article__meta { font-family: var(--font-head); font-size: 1.25rem; }
+[data-theme='jurnal'] .article__cover img { border: 0.6rem solid #fff; border-bottom-width: 2rem; border-radius: 2px; box-shadow: 0 4px 14px rgba(60, 40, 10, 0.25); transform: rotate(-0.8deg); }
+[data-theme='jurnal'] .prose { line-height: 1.85rem; }
+[data-theme='jurnal'] .prose h2, [data-theme='jurnal'] .prose h3 { font-family: var(--font-head); font-size: 2rem; color: var(--accent); }
+[data-theme='jurnal'] .prose blockquote { border-left: 3px solid var(--accent); font-style: italic; }
+[data-theme='jurnal'] .chips a { border: 1px dashed var(--accent); background: transparent; font-family: var(--font-head); font-size: 1.15rem; }
+[data-theme='jurnal'] .site-footer { border: 0; text-align: center; font-family: var(--font-head); font-size: 1.2rem; }
+[data-theme='jurnal'] .footer-inner { justify-content: center; }
+
+@media (max-width: 640px) {
+  [data-theme='jurnal'] .main { padding: 1.5rem 1rem 2rem 2.6rem; margin-inline: 0.5rem; width: auto; }
+  [data-theme='jurnal'] .main { background-image: linear-gradient(to right, transparent 1.9rem, rgba(200, 80, 60, 0.45) 1.9rem, rgba(200, 80, 60, 0.45) calc(1.9rem + 2px), transparent calc(1.9rem + 2px)), repeating-linear-gradient(transparent 0, transparent calc(1.85rem - 1px), rgba(110, 150, 190, 0.28) calc(1.85rem - 1px), rgba(110, 150, 190, 0.28) 1.85rem); }
+  [data-theme='jurnal'] .posts::before { left: -0.9rem; } [data-theme='jurnal'] .post-card::before { left: calc(-0.9rem - 6px); }
+}

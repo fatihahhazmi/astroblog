@@ -1,0 +1,91 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PostList from '@components/PostList.astro';
+import Chips from '@components/Chips.astro';
+import SchemaBlogPosting from '@components/SchemaBlogPosting.astro';
+import { SITE } from '@config/site.config';
+import {
+  formatDate,
+  getCategoryUrl,
+  getPostImage,
+  getPostSlug,
+  getPostUrl,
+  getPublishedPosts,
+  getTagUrl,
+  readingTime,
+} from '@utils/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ params: { slug: getPostSlug(post) }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const { title, description, pubDate, updatedDate, author, category, tags, coverAlt } = post.data;
+
+const image = getPostImage(post);
+const path = getPostUrl(post);
+const pageUrl = new URL(path, SITE.siteUrl).toString();
+const minutes = readingTime(post.body);
+
+// Formula: \\( ... \\), \\[ ... \\] atau $$ ... $$ (dua garis condong dalam fail Markdown)
+const hasMath = /\\\\[(\[]|\$\$/.test(post.body);
+
+const everything = await getPublishedPosts();
+const related = [
+  ...everything.filter((p) => p.id !== post.id && p.data.category === category),
+  ...everything.filter((p) => p.id !== post.id && p.data.category !== category),
+].slice(0, 3);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
+  imageAlt={image ? coverAlt || title : undefined}
+  type="article"
+  canonical={path}
+  publishedTime={pubDate}
+  modifiedTime={updatedDate ?? pubDate}
+  section={category}
+  tags={tags}
+  math={hasMath}
+>
+  <SchemaBlogPosting slot="head" post={post} url={pageUrl} />
+
+  <article class="article" data-pagefind-body>
+    <header class="article__header">
+      <p class="article__cat"><a href={getCategoryUrl(category)}>{category}</a></p>
+      <h1 class="article__title">{title}</h1>
+      <p class="article__meta" data-pagefind-ignore>
+        <time datetime={pubDate.toISOString()}>{formatDate(pubDate, 'long')}</time>
+        <span>{author || SITE.author}</span>
+        <span>{minutes} min baca</span>
+      </p>
+    </header>
+
+    {image && (
+      <figure class="article__cover" data-pagefind-ignore>
+        <img src={image} alt={coverAlt || title} width="1200" height="675" fetchpriority="high" decoding="async" />
+      </figure>
+    )}
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  {tags.length > 0 && (
+    <div class="article__tags" data-pagefind-ignore>
+      <Chips items={tags.map((name) => ({ name, href: getTagUrl(name) }))} prefix="#" />
+    </div>
+  )}
+
+  {related.length > 0 && (
+    <section class="section" aria-labelledby="baca-juga">
+      <h2 id="baca-juga" class="section__title">Baca juga</h2>
+      <PostList posts={related} />
+    </section>
+  )}
+</BaseLayout>

@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PostList from '@components/PostList.astro';
+import { slugify } from '@utils/slugify';
+import { getCategories, getPublishedPosts } from '@utils/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return getCategories(posts).map((term) => ({
+    params: { category: term.slug },
+    props: { term, posts: posts.filter((p) => p.data.category === term.name) },
+  }));
+}
+
+const { term, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`Kategori: ${term.name}`}
+  description={`Artikel dalam Kategori ${term.name}.`}
+>
+  <h1 class="page-title">Kategori: {term.name}</h1>
+  <PostList posts={posts} />
+</BaseLayout>

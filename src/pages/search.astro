@@ -1,0 +1,21 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE } from '@config/site.config';
+---
+
+<BaseLayout title="Carian Artikel" description={`Cari artikel di ${SITE.title}.`} noIndex>
+  <link slot="head" rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+
+  <h1 class="page-title">Carian Artikel</h1>
+  <div id="search"></div>
+  <noscript><p>Carian memerlukan JavaScript.</p></noscript>
+
+  <script src="/pagefind/pagefind-ui.js" is:inline></script>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      const ui = new PagefindUI({ element: '#search', showImages: true, showSubResults: true, resetStyles: false });
+      const query = new URLSearchParams(window.location.search).get('q');
+      if (query) ui.triggerSearch(query);
+    });
+  </script>
+</BaseLayout>

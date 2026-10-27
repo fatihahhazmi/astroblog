@@ -1,0 +1,26 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PostList from '@components/PostList.astro';
+import Pagination from '@components/Pagination.astro';
+import { SITE } from '@config/site.config';
+import { getPublishedPosts } from '@utils/posts';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getPublishedPosts();
+  return paginate(posts, { pageSize: SITE.postsPerPage });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const prevUrl = page.url.prev ? `${page.url.prev}`.replace(/\/?$/, '/') : undefined;
+const nextUrl = page.url.next ? `${page.url.next}`.replace(/\/?$/, '/') : undefined;
+---
+
+<BaseLayout
+  title={page.currentPage === 1 ? 'Semua Artikel' : `Semua Artikel, Halaman ${page.currentPage}`}
+  description={`Senarai artikel ${SITE.title}.`}
+>
+  <h1 class="page-title">Semua Artikel</h1>
+  <PostList posts={page.data} />
+  <Pagination prevUrl={prevUrl} nextUrl={nextUrl} label={`Halaman ${page.currentPage} / ${page.lastPage}`} />
+</BaseLayout>

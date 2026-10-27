@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const entry = await getEntry('pages', 'tentang');
+if (!entry) throw new Error('Fail src/content/pages/tentang.md tiada.');
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description ?? 'Tentang blog ini.'}>
+  <h1 class="page-title">{entry.data.title}</h1>
+  <div class="prose">
+    <Content />
+  </div>
+</BaseLayout>

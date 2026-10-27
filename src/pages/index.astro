@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PostList from '@components/PostList.astro';
+import Chips from '@components/Chips.astro';
+import { SITE } from '@config/site.config';
+import { getCategories, getCategoryUrl, getPublishedPosts } from '@utils/posts';
+
+const posts = await getPublishedPosts();
+const latest = posts.slice(0, SITE.postsPerPage);
+const categories = getCategories(posts).map((c) => ({ name: c.name, href: getCategoryUrl(c.name), count: c.count }));
+---
+
+<BaseLayout>
+  <section class="intro">
+    <h1 class="intro__title">{SITE.title}</h1>
+    {SITE.tagline && <p class="intro__tagline">{SITE.tagline}</p>}
+  </section>
+
+  {latest.length > 0 ? (
+    <PostList posts={latest} variant="home" />
+  ) : (
+    <p class="empty">Belum ada artikel. Tulis artikel pertama anda dalam Pages CMS.</p>
+  )}
+
+  {posts.length > latest.length && (
+    <p class="more"><a href="/blog/">Lihat semua artikel &rarr;</a></p>
+  )}
+
+  {categories.length > 0 && (
+    <section class="section" aria-labelledby="kategori">
+      <h2 id="kategori" class="section__title">Kategori</h2>
+      <Chips items={categories} />
+    </section>
+  )}
+</BaseLayout>

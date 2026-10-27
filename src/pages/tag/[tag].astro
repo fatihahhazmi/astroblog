@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PostList from '@components/PostList.astro';
+import { slugify } from '@utils/slugify';
+import { getTags, getPublishedPosts } from '@utils/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return getTags(posts).map((term) => ({
+    params: { tag: term.slug },
+    props: { term, posts: posts.filter((p) => p.data.tags.some((t) => slugify(t) === term.slug)) },
+  }));
+}
+
+const { term, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`Topik: ${term.name}`}
+  description={`Artikel dalam Topik ${term.name}.`}
+>
+  <h1 class="page-title">Topik: {term.name}</h1>
+  <PostList posts={posts} />
+</BaseLayout>
