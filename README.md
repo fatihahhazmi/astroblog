@@ -56,13 +56,6 @@ Daftar di <https://search.google.com/search-console>, tambah domain, dan hantar 
 
 ---
 
-## Untuk pembuat template (anda)
-
-Sebelum beri kepada kawan:
-1. Jalankan `npm install` sekali di komputer anda, kemudian **commit `package-lock.json`**. Ini mengunci versi pakej supaya build Cloudflare sentiasa sama (template ini dihantar tanpa lockfile).
-2. `npm run check` menyemak kandungan, `npm run dev` untuk pratonton setempat.
-3. Jadikan repo ini **Template repository**: GitHub → Settings → centang *Template repository*.
-
 ### Struktur
 ```
 src/content/settings/site.json   nama, tagline, tema, media sosial (disunting melalui CMS)
